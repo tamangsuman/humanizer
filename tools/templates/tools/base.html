@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Humanizer Django</title>
+  <link rel="stylesheet" href="{% static 'tools/css/style.css' %}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{% url 'home' %}">✨ AI Humanizer</a>
+  <nav>
+    <a href="{% url 'dashboard' %}">Dashboard</a><a href="{% url 'tools' %}">Tools</a><a href="{% url 'file_tools' %}">File Tools</a><a href="{% url 'history' %}">History</a>
+    {% if user.is_authenticated %}<span class="user">{{ user.username }}</span><form method="post" action="{% url 'logout' %}" class="inline">{% csrf_token %}<button>Logout</button></form>{% else %}<a href="{% url 'login' %}">Login</a><a class="pill" href="{% url 'signup' %}">Sign up</a>{% endif %}
+  </nav>
+</header>
+{% if messages %}<section class="messages">{% for message in messages %}<div class="msg {{ message.tags }}">{{ message }}</div>{% endfor %}</section>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer>Built with Django · SQLite · Optional Gemini API</footer>
+</body>
+</html>

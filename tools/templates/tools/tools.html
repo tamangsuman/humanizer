@@ -1,0 +1,1 @@
+{% extends 'tools/base.html' %}{% block content %}<section class="page-head"><div><p class="eyebrow">Tools</p><h1>Choose a writing tool</h1></div></section><section class="grid">{% for id, icon, name, desc in tools %}<a class="tool-card" href="{% url 'dashboard' %}?tool={{ id }}"><span>{{ icon }}</span><h3>{{ name }}</h3><p>{{ desc }}</p></a>{% endfor %}</section>{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'tools/base.html' %}{% block content %}
+<section class="page-head"><div><p class="eyebrow">Dashboard</p><h1>AI text workspace</h1></div><a class="btn" href="{% url 'file_tools' %}">Upload a file</a></section>
+<div class="workspace">
+  <form method="post" class="panel">{% csrf_token %}<div class="row"><label>Tool {{ form.tool_id }}</label><label>Mode {{ form.mode }}</label></div><label>Your input {{ form.text }}</label><button class="btn primary" type="submit">Generate</button></form>
+  <section class="panel output"><h2>Result</h2>{% if result %}<div class="stats"><span>AI score: {{ generation.ai_score|floatformat:0 }}%</span><span>Plagiarism: {{ generation.plagiarism_score|floatformat:0 }}%</span></div><pre>{{ result }}</pre><div class="actions"><a class="btn" href="{% url 'download_text' generation.pk %}">Download TXT</a><a class="btn" href="{% url 'download_pdf' generation.pk %}">Download PDF</a></div>{% else %}<p class="muted">Generated output will appear here.</p>{% endif %}</section>
+</div>
+<section class="refiners"><h2>Quick refiners</h2>{% for id, name in refiners %}<a href="{% url 'dashboard' %}?tool={{ id }}">{{ name }}</a>{% endfor %}</section>
+{% endblock %}

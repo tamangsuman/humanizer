@@ -1,0 +1,7 @@
+{% extends 'tools/base.html' %}{% block content %}
+<section class="hero">
+  <div><p class="eyebrow">Free AI writing toolkit</p><h1>Humanize, rewrite, detect, summarize, and export content.</h1><p class="lead">A simple Django version of your React/Express AI Humanizer app, redesigned as server-rendered pages with a clean dashboard.</p><div class="actions"><a class="btn primary" href="{% url 'dashboard' %}">Open Dashboard</a><a class="btn" href="{% url 'tools' %}">Browse Tools</a></div></div>
+  <div class="hero-card"><h3>Content score</h3><div class="score">87%</div><p>Human-friendly design with history, file upload, and downloads.</p></div>
+</section>
+<section class="grid">{% for id, icon, name, desc in tools %}<a class="tool-card" href="{% url 'dashboard' %}?tool={{ id }}"><span>{{ icon }}</span><h3>{{ name }}</h3><p>{{ desc }}</p></a>{% endfor %}</section>
+{% endblock %}
